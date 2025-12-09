@@ -1,0 +1,6 @@
+# src_dir: ./data/02_intermediate/spatial-attention-pcr
+# dst_dir: ./data/03_primary/spatial-attention-pcr-deconv
+src_dir: /snfs1/speed/gabriel.freddi/vs-mi
+dst_dir: /snfs1/speed/gabriel.freddi/vs-deconvs-mi-resized
+
+dab_threshold: 0.31

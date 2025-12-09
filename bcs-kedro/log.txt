@@ -1,0 +1,391 @@
+[08/08/25 18:00:58] INFO     Using 'conf/logging.yml' as logging configuration. You   __init__.py:270
+                             can change this by setting the KEDRO_LOGGING_CONFIG                     
+                             environment variable accordingly.                                       
+[08/08/25 18:01:06] INFO     Kedro project bcs-kedro                                   session.py:329
+GPU: PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')
+Details: {'compute_capability': (8, 6), 'device_name': 'NVIDIA GeForce RTX 3090 Ti'}
+GPU: PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')
+Details: {'compute_capability': (8, 6), 'device_name': 'NVIDIA GeForce RTX 3090 Ti'}
+GPU: PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')
+Details: {'compute_capability': (8, 6), 'device_name': 'NVIDIA GeForce RTX 3090 Ti'}
+GPU: PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')
+Details: {'compute_capability': (8, 6), 'device_name': 'NVIDIA GeForce RTX 3090 Ti'}
+[08/08/25 18:01:09] INFO     Kedro is sending anonymous usage data with the sole        plugin.py:233
+                             purpose of improving the product. No personal data or IP                
+                             addresses are stored on our side. If you want to opt out,               
+                             set the `KEDRO_DISABLE_TELEMETRY` or `DO_NOT_TRACK`                     
+                             environment variables, or create a `.telemetry` file in                 
+                             the current working directory with the contents `consent:               
+                             false`. Read more at                                                    
+                             https://docs.kedro.org/en/stable/configuration/telemetry.h              
+                             tml                                                                     
+                    INFO     Using synchronous mode for loading and saving    sequential_runner.py:74
+                             data. Use the --async flag for potential                                
+                             performance gains.                                                      
+                             https://docs.kedro.org/en/stable/nodes_and_pipel                        
+                             ines/run_a_pipeline.html#load-and-save-asynchron                        
+                             ously                                                                   
+                    INFO     Loading data from train_df (ParquetDataset)...       data_catalog.py:390
+                    INFO     Loading data from val_df (ParquetDataset)...         data_catalog.py:390
+[08/08/25 18:01:10] INFO     Loading data from params:num_classes                 data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:model_checkpoint_path       data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:epochs (MemoryDataset)...   data_catalog.py:390
+                    INFO     Loading data from params:batch_size                  data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:learning_rate               data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:weight_decay                data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:metrics_output_dir          data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:clearml_params              data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Loading data from params:use_pretrained_weights      data_catalog.py:390
+                             (MemoryDataset)...                                                      
+                    INFO     Running node: train_pcr_classifier_node:                     node.py:367
+                             train_cnn([train_df;val_df;params:num_classes;params:model_c            
+                             heckpoint_path;params:epochs;params:batch_size;params:learni            
+                             ng_rate;params:weight_decay;params:metrics_output_dir;params            
+                             :clearml_params;params:use_pretrained_weights]) ->                      
+                             [val_gen;val_steps]                                                     
+                    DEBUG    ClearML Params: {'project_name': 'Spatial Attention PCR',   nodes.py:877
+                             'task_name': 'train-cnn-pcr-no-pretrained-resnet50',                    
+                             'tags': ['CNN', 'PCR', 'pre-trained ResNet50', '9                       
+                             channels', '2 classes', 'loss_BCE',                                     
+                             'early_stopping_val_loss']}                                             
+[08/08/25 18:01:11] DEBUG    pre dataset gen                                             nodes.py:908
+=============================================
+                    DEBUG    entrou create                                               nodes.py:347
+                    DEBUG    deu load att map                                              api.py:446
+Keys inside dataset: (TensorSpec(shape=(256, 256, 9), dtype=tf.float16, name=None), TensorSpec(shape=(), dtype=tf.int32, name=None))
+
+One actual element:
+(<tf.Tensor: shape=(256, 256, 9), dtype=float16, numpy=
+array([[[0.431 , 0.4177, 0.4067, ..., 0.4424, 0.4424, 0.4424],
+        [0.431 , 0.4177, 0.4067, ..., 0.4365, 0.4365, 0.4365],
+        [0.431 , 0.4177, 0.4067, ..., 0.4385, 0.4385, 0.4385],
+        ...,
+        [0.431 , 0.4177, 0.4067, ..., 0.423 , 0.4514, 0.442 ],
+        [0.431 , 0.4177, 0.4067, ..., 0.425 , 0.4536, 0.4438],
+        [0.431 , 0.4177, 0.4067, ..., 0.4175, 0.4456, 0.4363]],
+
+       [[0.4324, 0.419 , 0.408 , ..., 0.4436, 0.4436, 0.4436],
+        [0.4324, 0.419 , 0.408 , ..., 0.4377, 0.4377, 0.4377],
+        [0.4324, 0.419 , 0.408 , ..., 0.44  , 0.44  , 0.44  ],
+        ...,
+        [0.4324, 0.419 , 0.408 , ..., 0.4138, 0.442 , 0.4324],
+        [0.4324, 0.419 , 0.408 , ..., 0.4102, 0.4382, 0.429 ],
+        [0.4324, 0.419 , 0.408 , ..., 0.4023, 0.4307, 0.4211]],
+
+       [[0.4336, 0.4204, 0.4092, ..., 0.4448, 0.4448, 0.4448],
+        [0.4336, 0.4204, 0.4092, ..., 0.4392, 0.4392, 0.4392],
+        [0.4336, 0.4204, 0.4092, ..., 0.4412, 0.4412, 0.4412],
+        ...,
+        [0.4336, 0.4204, 0.4092, ..., 0.4092, 0.4373, 0.4277],
+        [0.4336, 0.4204, 0.4092, ..., 0.4023, 0.431 , 0.4211],
+        [0.4336, 0.4204, 0.4092, ..., 0.3938, 0.4219, 0.4126]],
+
+       ...,
+
+       [[0.897 , 0.87  , 0.8467, ..., 0.913 , 0.9053, 0.909 ],
+        [0.897 , 0.87  , 0.8467, ..., 0.913 , 0.9053, 0.909 ],
+        [0.897 , 0.87  , 0.8467, ..., 0.909 , 0.9014, 0.9053],
+        ...,
+        [0.897 , 0.87  , 0.8467, ..., 0.909 , 0.913 , 0.893 ],
+        [0.897 , 0.87  , 0.8467, ..., 0.909 , 0.913 , 0.893 ],
+        [0.897 , 0.87  , 0.8467, ..., 0.909 , 0.913 , 0.893 ]],
+
+       [[0.8994, 0.8726, 0.8486, ..., 0.919 , 0.9116, 0.915 ],
+        [0.8994, 0.8726, 0.8486, ..., 0.919 , 0.9116, 0.915 ],
+        [0.8994, 0.8726, 0.8486, ..., 0.9116, 0.904 , 0.9077],
+        ...,
+        [0.8994, 0.8726, 0.8486, ..., 0.9116, 0.915 , 0.8955],
+        [0.8994, 0.8726, 0.8486, ..., 0.9116, 0.915 , 0.8955],
+        [0.8994, 0.8726, 0.8486, ..., 0.9116, 0.915 , 0.8955]],
+
+       [[0.902 , 0.875 , 0.851 , ..., 0.922 , 0.914 , 0.918 ],
+        [0.902 , 0.875 , 0.851 , ..., 0.922 , 0.914 , 0.918 ],
+        [0.902 , 0.875 , 0.851 , ..., 0.918 , 0.91  , 0.914 ],
+        ...,
+        [0.902 , 0.875 , 0.851 , ..., 0.914 , 0.918 , 0.898 ],
+        [0.902 , 0.875 , 0.851 , ..., 0.914 , 0.918 , 0.898 ],
+        [0.902 , 0.875 , 0.851 , ..., 0.914 , 0.918 , 0.898 ]]],
+      dtype=float16)>, <tf.Tensor: shape=(), dtype=int32, numpy=1>)
+=============================================
+[08/08/25 18:01:13] DEBUG    entrou create                                               nodes.py:347
+                    DEBUG    deu load att map                                              api.py:446
+Keys inside dataset: (TensorSpec(shape=(256, 256, 9), dtype=tf.float16, name=None), TensorSpec(shape=(), dtype=tf.int32, name=None))
+
+One actual element:
+(<tf.Tensor: shape=(256, 256, 9), dtype=float16, numpy=
+array([[[0.6733, 0.6523, 0.6343, ..., 0.7085, 0.7085, 0.7085],
+        [0.6733, 0.6523, 0.6343, ..., 0.7085, 0.7085, 0.7085],
+        [0.6733, 0.6523, 0.6343, ..., 0.7085, 0.7085, 0.7085],
+        ...,
+        [0.6733, 0.6523, 0.6343, ..., 0.6997, 0.6997, 0.6997],
+        [0.6733, 0.6523, 0.6343, ..., 0.6997, 0.6997, 0.6997],
+        [0.6733, 0.6523, 0.6343, ..., 0.7026, 0.7026, 0.7026]],
+
+       [[0.674 , 0.653 , 0.635 , ..., 0.709 , 0.709 , 0.709 ],
+        [0.674 , 0.653 , 0.635 , ..., 0.709 , 0.709 , 0.709 ],
+        [0.674 , 0.653 , 0.635 , ..., 0.709 , 0.709 , 0.709 ],
+        ...,
+        [0.674 , 0.653 , 0.635 , ..., 0.7   , 0.7   , 0.7   ],
+        [0.674 , 0.653 , 0.635 , ..., 0.7   , 0.7   , 0.7   ],
+        [0.674 , 0.653 , 0.635 , ..., 0.703 , 0.703 , 0.703 ]],
+
+       [[0.674 , 0.6533, 0.6353, ..., 0.7036, 0.7036, 0.7036],
+        [0.674 , 0.6533, 0.6353, ..., 0.7036, 0.7036, 0.7036],
+        [0.674 , 0.6533, 0.6353, ..., 0.7036, 0.7036, 0.7036],
+        ...,
+        [0.674 , 0.6533, 0.6353, ..., 0.695 , 0.695 , 0.695 ],
+        [0.674 , 0.6533, 0.6353, ..., 0.6997, 0.6997, 0.6997],
+        [0.674 , 0.6533, 0.6353, ..., 0.7036, 0.7036, 0.7036]],
+
+       ...,
+
+       [[0.7925, 0.7466, 0.7627, ..., 0.8145, 0.8145, 0.8145],
+        [0.834 , 0.7925, 0.8076, ..., 0.8726, 0.8726, 0.8726],
+        [0.8564, 0.8154, 0.8296, ..., 0.9126, 0.9126, 0.9126],
+        ...,
+        [0.8843, 0.8574, 0.8335, ..., 0.9116, 0.9116, 0.9116],
+        [0.8843, 0.8574, 0.8335, ..., 0.9194, 0.9194, 0.9194],
+        [0.8843, 0.8574, 0.8335, ..., 0.9233, 0.9233, 0.9233]],
+
+       [[0.82  , 0.7373, 0.7646, ..., 0.763 , 0.763 , 0.763 ],
+        [0.817 , 0.7266, 0.758 , ..., 0.801 , 0.801 , 0.801 ],
+        [0.8257, 0.7935, 0.8047, ..., 0.873 , 0.873 , 0.873 ],
+        ...,
+        [0.8853, 0.8584, 0.8345, ..., 0.917 , 0.917 , 0.917 ],
+        [0.8853, 0.8584, 0.8345, ..., 0.921 , 0.921 , 0.921 ],
+        [0.8853, 0.8584, 0.8345, ..., 0.925 , 0.925 , 0.925 ]],
+
+       [[0.811 , 0.7017, 0.738 , ..., 0.7656, 0.7656, 0.7656],
+        [0.8135, 0.6997, 0.7373, ..., 0.7705, 0.7705, 0.7705],
+        [0.762 , 0.7266, 0.7383, ..., 0.8438, 0.8438, 0.8438],
+        ...,
+        [0.886 , 0.8594, 0.8354, ..., 0.9243, 0.9243, 0.9243],
+        [0.886 , 0.8594, 0.8354, ..., 0.922 , 0.922 , 0.922 ],
+        [0.886 , 0.8594, 0.8354, ..., 0.9253, 0.9253, 0.9253]]],
+      dtype=float16)>, <tf.Tensor: shape=(), dtype=int32, numpy=1>)
+                    DEBUG    pos dataset gen                                             nodes.py:911
+                    INFO     Creating model checkpoint path folder:                      nodes.py:917
+                             /scratch/henrique.colonese/breast-cancer-segmentation/data/             
+                             06_models/model_cnn_pcr_clf                                             
+                    DEBUG    Class Weights: {0: 1.0, 1: 1.0}                             nodes.py:957
+                    DEBUG    Training model                                              nodes.py:960
+                    DEBUG    PHH3_VIRTUAL                                                nodes.py:961
+Epoch 1/50
+[08/08/25 18:05:11] ERROR    Training error: Graph execution error:                      nodes.py:974
+                                                                                                     
+                             Detected at node StatefulPartitionedCall defined at (most               
+                             recent call last):                                                      
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 973, in _bootstrap                                                 
+                                                                                                     
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 1016, in _bootstrap_inner                                          
+                                                                                                     
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 953, in run                                                        
+                                                                                                     
+                               File                                                                  
+                             "/opt/python/3-10-12/lib/python3.10/concurrent/futures/thre             
+                             ad.py", line 83, in _worker                                             
+                                                                                                     
+                               File                                                                  
+                             "/opt/python/3-10-12/lib/python3.10/concurrent/futures/thre             
+                             ad.py", line 58, in run                                                 
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/runner/task.py", line 102, in               
+                             __call__                                                                
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/runner/task.py", line 88, in                
+                             execute                                                                 
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/runner/task.py", line 164, in               
+                             _run_node_sequential                                                    
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/runner/task.py", line 298, in               
+                             _call_node_run                                                          
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/pipeline/node.py", line 384, in             
+                             run                                                                     
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/kedro/pipeline/node.py", line 429, in             
+                             _run_with_list                                                          
+                                                                                                     
+                               File                                                                  
+                             "/home_cerberus/speed/henrique.colonese/full_pipeline/breas             
+                             t-cancer-segmentation/bcs-kedro/src/bcs_kedro/pipelines/tra             
+                             in_cnn/nodes.py", line 963, in train_cnn                                
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/keras/src/utils/traceback_utils.py",              
+                             line 117, in error_handler                                              
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/keras/src/backend/tensorflow/trainer.             
+                             py", line 371, in fit                                                   
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/keras/src/backend/tensorflow/trainer.             
+                             py", line 219, in function                                              
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyt             
+                             hon3.10/site-packages/keras/src/backend/tensorflow/trainer.             
+                             py", line 132, in multi_step_on_iterator                                
+                                                                                                     
+                             Failed to determine best cudnn convolution algorithm for:               
+                             %cudnn-conv-bias-activation.105 =                                       
+                             (f32[3000,64,256,256]{3,2,1,0}, u8[0]{0})                               
+                             custom-call(f32[3000,9,256,256]{3,2,1,0} %transpose.1131,               
+                             f32[64,9,7,7]{3,2,1,0} %transpose.1132, f32[64]{0}                      
+                             %arg4.5), window={size=7x7 pad=3_3x3_3},                                
+                             dim_labels=bf01_oi01->bf01,                                             
+                             custom_call_target="__cudnn$convBiasActivationForward",                 
+                             metadata={op_type="Conv2D"                                              
+                             op_name="functional_1/conv2d_1/convolution"                             
+                             source_file="/home/all_home/henrique.colonese/breast-cancer             
+                             -env/lib/python3.10/site-packages/tensorflow/python/framewo             
+                             rk/ops.py" source_line=1177},                                           
+                             backend_config={"operation_queue_id":"0","wait_on_operation             
+                             _queues":[],"cudnn_conv_backend_config":{"conv_result_scale             
+                             ":1,"activation_mode":"kNone","side_input_scale":0,"leakyre             
+                             lu_alpha":0}}                                                           
+                                                                                                     
+                             Original error: RESOURCE_EXHAUSTED: Out of memory while                 
+                             trying to allocate 50348425216 bytes.                                   
+                                                                                                     
+                             To ignore this failure and try to use a fallback algorithm              
+                             (which may have suboptimal performance), use                            
+                             XLA_FLAGS=--xla_gpu_strict_conv_algorithm_picker=false.                 
+                             Please also file a bug for the root cause of failing                    
+                             autotuning.                                                             
+                                      [[{{node StatefulPartitionedCall}}]]                           
+                             [Op:__inference_multi_step_on_iterator_34446]                           
+[08/08/25 18:05:12] ERROR    Node train_pcr_classifier_node: train_cnn() ->  failed with  node.py:392
+                             error:                                                                  
+                             Graph execution error:                                                  
+                                                                                                     
+                             Detected at node StatefulPartitionedCall defined at (most               
+                             recent call last):                                                      
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 973, in _bootstrap                                                 
+                                                                                                     
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 1016, in _bootstrap_inner                                          
+                                                                                                     
+                               File "/opt/python/3-10-12/lib/python3.10/threading.py",               
+                             line 953, in run                                                        
+                                                                                                     
+                               File                                                                  
+                             "/opt/python/3-10-12/lib/python3.10/concurrent/futures/threa            
+                             d.py", line 83, in _worker                                              
+                                                                                                     
+                               File                                                                  
+                             "/opt/python/3-10-12/lib/python3.10/concurrent/futures/threa            
+                             d.py", line 58, in run                                                  
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/runner/task.py", line 102, in                
+                             __call__                                                                
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/runner/task.py", line 88, in                 
+                             execute                                                                 
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/runner/task.py", line 164, in                
+                             _run_node_sequential                                                    
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/runner/task.py", line 298, in                
+                             _call_node_run                                                          
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/pipeline/node.py", line 384, in              
+                             run                                                                     
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/kedro/pipeline/node.py", line 429, in              
+                             _run_with_list                                                          
+                                                                                                     
+                               File                                                                  
+                             "/home_cerberus/speed/henrique.colonese/full_pipeline/breast            
+                             -cancer-segmentation/bcs-kedro/src/bcs_kedro/pipelines/train            
+                             _cnn/nodes.py", line 963, in train_cnn                                  
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/keras/src/utils/traceback_utils.py",               
+                             line 117, in error_handler                                              
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/keras/src/backend/tensorflow/trainer.py            
+                             ", line 371, in fit                                                     
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/keras/src/backend/tensorflow/trainer.py            
+                             ", line 219, in function                                                
+                                                                                                     
+                               File                                                                  
+                             "/home/all_home/henrique.colonese/breast-cancer-env/lib/pyth            
+                             on3.10/site-packages/keras/src/backend/tensorflow/trainer.py            
+                             ", line 132, in multi_step_on_iterator                                  
+                                                                                                     
+                             Failed to determine best cudnn convolution algorithm for:               
+                             %cudnn-conv-bias-activation.105 =                                       
+                             (f32[3000,64,256,256]{3,2,1,0}, u8[0]{0})                               
+                             custom-call(f32[3000,9,256,256]{3,2,1,0} %transpose.1131,               
+                             f32[64,9,7,7]{3,2,1,0} %transpose.1132, f32[64]{0} %arg4.5),            
+                             window={size=7x7 pad=3_3x3_3}, dim_labels=bf01_oi01->bf01,              
+                             custom_call_target="__cudnn$convBiasActivationForward",                 
+                             metadata={op_type="Conv2D"                                              
+                             op_name="functional_1/conv2d_1/convolution"                             
+                             source_file="/home/all_home/henrique.colonese/breast-cancer-            
+                             env/lib/python3.10/site-packages/tensorflow/python/framework            
+                             /ops.py" source_line=1177},                                             
+                             backend_config={"operation_queue_id":"0","wait_on_operation_            
+                             queues":[],"cudnn_conv_backend_config":{"conv_result_scale":            
+                             1,"activation_mode":"kNone","side_input_scale":0,"leakyrelu_            
+                             alpha":0}}                                                              
+                                                                                                     
+                             Original error: RESOURCE_EXHAUSTED: Out of memory while                 
+                             trying to allocate 50348425216 bytes.                                   
+                                                                                                     
+                             To ignore this failure and try to use a fallback algorithm              
+                             (which may have suboptimal performance), use                            
+                             XLA_FLAGS=--xla_gpu_strict_conv_algorithm_picker=false.                 
+                             Please also file a bug for the root cause of failing                    
+                             autotuning.                                                             
+                                      [[{{node StatefulPartitionedCall}}]]                           
+                             [Op:__inference_multi_step_on_iterator_34446]                           
+                    WARNING  No nodes ran. Repeat the previous command to attempt a new runner.py:305
+                             run.                                                                    

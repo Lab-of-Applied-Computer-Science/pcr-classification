@@ -1,0 +1,98 @@
+import os
+os.environ['GDAL_PAM_ENABLED'] = 'NO'
+
+from torchvision import transforms
+import matplotlib.pyplot as plt
+from itertools import product
+import rasterio as rio
+from tqdm import tqdm
+from PIL import Image
+from src.utils import *
+import pandas as pd
+import numpy as np
+import warnings
+import shutil
+import cv2
+
+
+def map_to_6_classes(class_mapping, image_path):
+    
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    for old_class, new_class in class_mapping.items():
+        image[image == old_class] = new_class
+
+    cv2.imwrite(image_path, image)
+
+# Retirado e adaptado do código do repositório do Prof. George, referenciar o repositório
+def get_tiles(ds, width , height):
+    nols, nrows = ds.meta['width'], ds.meta['height']
+    offsets = product(range(0, nols, width), range(0, nrows, height))
+    big_window = rio.windows.Window(col_off=0, row_off=0, width=nols, height=nrows)
+    for col_off, row_off in offsets:
+        window = rio.windows.Window(col_off=col_off, row_off=row_off, width=width, height=height).intersection(big_window)
+        transform = rio.windows.transform(window, ds.transform)
+        yield window, transform
+
+
+def process(in_path, in_filename, out_path, sample_id, x_min, y_min, magnification, tile_width, tile_height):
+
+    with rio.open(os.path.join(in_path, in_filename)) as inds:
+
+        meta = inds.meta.copy()
+        for window, transform in get_tiles(inds, tile_width, tile_height):
+            meta['transform'] = transform
+            if (window.width == 224) & (window.height == 224):
+                meta['width'], meta['height'] = window.width, window.height
+                out_filename = f'{sample_id}_xmin{x_min}_ymin{y_min}_MPP-{magnification}_{int(window.col_off)}_{int(window.row_off)}.png'
+                outpath = os.path.join(out_path, out_filename)
+
+                with rio.open(outpath, 'w', **meta) as outds:
+                    outds.write(inds.read(window=window))
+
+def preprocess_images(roi_bounds_df, bcss_dir, magnification, masks_path, images_path, out_masks_dir, out_images_dir):
+
+    create_folder(out_masks_dir)
+    create_folder(out_images_dir)
+
+    roi_rgb_array = []
+    roi_mask_array = []
+
+    data_to_process = range(len(roi_bounds_df)) # trocar por quantidade de amostras na pasta
+    progress_bar = tqdm(total=len(data_to_process), desc='Processing Data', unit='image(s)')
+
+    for index, row in roi_bounds_df.iterrows():
+        sample_id = row['Unnamed: 0']
+        x_min = row['xmin']
+        y_min = row['ymin']
+        x_max = row['xmax']
+        y_max = row['ymax']
+
+        rgb_image_path = os.path.join(bcss_dir, f'{sample_id}_xmin{x_min}_ymin{y_min}_MPP-{magnification}.png')
+        mask_image_path = os.path.join(bcss_dir, f'{sample_id}_xmin{x_min}_ymin{y_min}_MPP-{magnification}.png')
+
+        if (os.path.exists(rgb_image_path) and os.path.exists(mask_image_path)):
+            rgb_image = cv2.imread(rgb_image_path)
+
+            mask_image = cv2.imread(mask_image_path, cv2.IMREAD_GRAYSCALE)
+
+            if rgb_image is not None and mask_image is not None:
+
+                roi_rgb = rgb_image[y_min:y_max, x_min:x_max]
+                roi_mask = mask_image[y_min:y_max, x_min:x_max]
+
+                roi_rgb_array.append(roi_rgb)
+                roi_mask_array.append(roi_mask)
+
+                in_filename = f'{sample_id}_xmin{x_min}_ymin{y_min}_MPP-{magnification}.png'
+                if not os.path.exists(os.path.join(out_masks_dir, in_filename)) and not os.path.exists(os.path.join(out_images_dir, in_filename)):
+                    process(masks_path, in_filename, out_masks_dir, sample_id, x_min, y_min, magnification, 224, 224);
+                    process(images_path, in_filename, out_images_dir, sample_id, x_min, y_min, magnification, 224, 224);
+                    progress_bar.update(1)
+            else:
+                break
+        else:
+            #print(f"File {rgb_image_path} doesn't exist. Skipping...")
+            progress_bar.update(1)
+
+    progress_bar.close()
+    

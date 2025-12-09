@@ -1,0 +1,3 @@
+.vscode
+slurm-logs/*.log
+**/info.log*

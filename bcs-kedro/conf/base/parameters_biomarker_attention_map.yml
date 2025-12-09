@@ -1,0 +1,21 @@
+src_dir_deconv_tiles: /home_cerberus/speed/daniel.ayala/breast-cancer-segmentation/bcs-kedro/data/03_primary/spatial-attention-pcr-deconv
+src_dir_segmented_tiles: /home_cerberus/disk3/speed/viniciusfariaresende/breast-cancer-segmentation-storage/individaully_segmented_masks
+# dst_dir_attention_maps: /home_cerberus/speed/daniel.ayala/breast-cancer-segmentation/bcs-kedro/data/05_model_input/spatial-attention-pcr-attmaps
+# dst_dir_attention_maps: /snfs1/speed/henrique.colonese/breast-cancer-segmentation/bcs-kedro/data/05_model_input/spatial-attention-pcr-attmaps-ihc-only
+dst_dir_attention_maps: /snfs1/speed/henrique.colonese/breast-cancer-segmentation/bcs-kedro/data/05_model_input/spatial-attention-pcr-attmaps-ihc-only-tensor
+
+# dst_dir_attention_maps: /scratch/henrique.colonese/breast-cancer-segmentation/data/05_model_input/spatial-attention-pcr-attmaps-KI67
+# dst_dir_attention_maps: /scratchhenrique.colonese/breast-cancer-segmentation/data/05_model_input/spatial-attention-pcr-attmaps-PHH3
+# dst_dir_attention_maps: /scratch/henrique.colonese/breast-cancer-segmentation/data/05_model_input/spatial-attention-pcr-attmaps-KI67-intersect-PHH3
+
+# src_dir_deconv_tiles: ./data/03_primary/test-datasets-for-att-map/deconv-images
+# src_dir_segmented_tiles: ./data/03_primary/test-datasets-for-att-map/segmented-images
+# dst_dir_attention_maps: ./data/03_primary/test-datasets-for-att-map/attention-maps
+tile_width: 1000
+tile_height: 1000
+orig_img_width: 8000
+orig_img_height: 8000
+kde_samples: 512
+bandwidth: 150
+use_tumor_cell: False
+att_map_agg_method: INTERSECT

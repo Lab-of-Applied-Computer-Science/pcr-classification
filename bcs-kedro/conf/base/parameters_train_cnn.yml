@@ -1,0 +1,23 @@
+num_classes: 2
+model_checkpoint_path: /scratch/henrique.colonese/breast-cancer-segmentation/data/06_models/model_cnn_pcr_clf
+epochs: 50
+batch_size: 16
+learning_rate: 0.0001
+weight_decay: 0.0001
+experiment_name: train-cnn-pcr-no-pretrained-resnet50
+metrics_output_dir: /scratch/henrique.colonese/breast-cancer-segmentation/data/07_model_output/${experiment_name}/${datetime:}
+clearml_params:
+  project_name: Spatial Attention PCR
+  task_name: ${experiment_name}
+  tags:
+    - CNN
+    - PCR
+    - pre-trained ResNet50
+    - 9 channels
+    - 2 classes
+    - loss_BCE
+    - early_stopping_val_loss
+use_pretrained_weights: False
+mapping_split_train_val: /scratch/henrique.colonese/breast-cancer-segmentation/data/05_model_input/data_splits
+test_size: 0.2
+threshold_tuning: True

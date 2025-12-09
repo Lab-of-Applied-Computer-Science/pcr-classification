@@ -1,0 +1,7 @@
+name: breast-cancer-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10.12
+  - pip==24.2.0

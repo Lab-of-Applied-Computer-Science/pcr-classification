@@ -1,0 +1,1 @@
+download_script_path: "./src/bcs_kedro/scripts/bcss_data_downloader/download_crowdsource_dataset.py"

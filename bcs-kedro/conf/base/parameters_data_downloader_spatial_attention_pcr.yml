@@ -1,0 +1,3 @@
+bucket_name: breast-cancer-data-repository
+root_folder: spatial-attention-pcr
+target_download_folder: ./data/01_raw
