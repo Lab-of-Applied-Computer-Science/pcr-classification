@@ -17,8 +17,6 @@ A abordagem é inspirada em Duanmu et al. (2022), removendo o módulo de detecç
   Implementação dos modelos de coloração virtual (CycleGAN, cGAN, difusão) e
   scripts para treinar e gerar Ki-67/PHH3 virtuais a partir de H&E.
 
-- `env_kedro/`  
-  Ambiente virtual associado ao projeto Kedro (opcional versionar; pode ser
-  recriado a partir de `requirements.txt` ou `environment.yml`).
+- requirements.txt utilizado para criação de env
 
 
