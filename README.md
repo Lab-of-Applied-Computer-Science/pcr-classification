@@ -1,4 +1,5 @@
 Link para dataset: https://www.dropbox.com/scl/fo/zgtiryigax107nddldshi/AO2tYU4Dh0KyJ-f8pKOmpEY?rlkey=sf91fcnznh73w97z72skmrybe&dl=0
+
 folder com as imagens já registradas: openSlide_level_4_To_level_0_rigid_reg
 
 
