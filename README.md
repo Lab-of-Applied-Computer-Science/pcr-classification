@@ -2,7 +2,10 @@ Link para dataset: https://www.dropbox.com/scl/fo/zgtiryigax107nddldshi/AO2tYU4D
 
 folder com as imagens já registradas: openSlide_level_4_To_level_0_rigid_reg
 
+O dataset dentro da phocus está localizado em:
 
+- HE/ KI67 / PHH3 (original) : /sonic_home/henrique.colonese/breast-cancer-segmentation/bcs-kedro/data
+- KI67 / PHH3 (virtual) : /sonic_home/henrique.colonese/virtual_dataset/vs-mi
 
 # Predição de pCR em TNBC com coloração virtual
 
