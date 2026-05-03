@@ -1,93 +1,95 @@
-Link para dataset: https://www.dropbox.com/scl/fo/zgtiryigax107nddldshi/AO2tYU4Dh0KyJ-f8pKOmpEY?rlkey=sf91fcnznh73w97z72skmrybe&dl=0
+# pCR Prediction in TNBC with Virtual Staining
 
-folder com as imagens já registradas: openSlide_level_4_To_level_0_rigid_reg
+Repository for the dissertation on predicting pathological complete response (pCR) in triple-negative breast cancer (TNBC), combining:
+- H&E images,
+- Ki-67 and PHH3 stains (real or virtual),
+- Biomarker-based spatial attention.
 
-O dataset dentro da phocus está localizado em:
+The approach is inspired by Duanmu et al. (2022), removing the tumor cell detection module and incorporating a virtual staining module using Generative Adversarial Networks (GANs).
 
-- HE/ KI67 / PHH3 (original) : /sonic_home/henrique.colonese/breast-cancer-segmentation/bcs-kedro/data
-- KI67 / PHH3 (virtual) : /sonic_home/henrique.colonese/virtual_dataset/vs-mi
-
-# Predição de pCR em TNBC com coloração virtual
-
-Repositório da dissertação sobre predição de resposta patológica completa (pCR) em câncer de mama triplo-negativo (TNBC), combinando:
-- imagens H&E,
-- colorações Ki-67 e PHH3 (reais ou virtuais),
-- atenção espacial baseada em biomarcadores.
-
-A abordagem é inspirada em Duanmu et al. (2022), removendo o módulo de detecção de células tumorais e incorporando um módulo de coloração virtual (GANs).
-
-## Estrutura (resumo)
+## Project Structure
 
 - `bcs-kedro/`  
-Projeto Kedro contendo o pipeline completo de treinamento e avaliação para predição de pCR:
-- Pré-processamento de imagens
-- Geração de mapas de atenção espacial baseados em biomarcadores
-- Modelo de predição baseado em ResNet com atenção
+  Kedro project containing the complete training and evaluation pipeline for pCR prediction:
+  - Image preprocessing
+  - Generation of biomarker-based spatial attention maps
+  - ResNet-based prediction model with an attention mechanism
 
 - `virtual_staining/`  
-Implementação dos modelos de coloração virtual:
-- **CycleGAN**: tradução imagem-para-imagem não pareada
-- **cGAN**: GAN condicional
-- **Difusão**: modelos baseados em Difusão
+  Implementation of the virtual staining models to generate Ki-67 and PHH3 markers from H&E:
+  - **CycleGAN**: Unpaired image-to-image translation
+  - **cGAN**: Conditional GAN
+  - **Diffusion**: Diffusion-based models
 
-Inclui scripts para treinar e gerar colorações virtuais de Ki-67 e PHH3 a partir de H&E.
+## Installation and Setup
 
+### 1. Clone the repository
 
-## 🚀 Instalação e Configuração
+```bash
+git clone https://github.com/Lab-of-Applied-Computer-Science/pcr-classification
+cd pcr-classification
+```
 
-### 1. Clonar o repositório
+### 2. Create a virtual environment
 
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+Python 3.8 or higher is recommended:
 
-### 2. Criar ambiente virtual
-
-Recomenda-se Python 3.8 ou superior:
-
+```bash
 python -m venv venv
-source venv/bin/activate  # No Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-### 3. Instalar dependências
+### 3. Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
 ---
 
-## ▶️ Execução
+## Execution
 
-### Pipeline de Predição de pCR (Kedro)
+### pCR Prediction Pipeline (Kedro)
 
-1. **Navegue até o diretório do projeto Kedro:**
+1. **Navigate to the Kedro project directory:**
 
+```bash
 cd bcs-kedro
+```
 
-Rode o arquivo .sh localizado em bcs-kedro/scripts/run_train_cnn_pcr.sh  alterando somente o pipeline e o seu user que deseja executar, como: 
+Run the `.sh` script located at `bcs-kedro/scripts/run_train_cnn_pcr.sh`, changing only the pipeline and the user you want to execute:
+
+```bash
 username="henrique"
 kedro_pipeline="train_cnn"
+```
 
-e configurações de execução, como górgona desejada, tempo de alocação e nome do job, exemplo:
+Also, adjust the SLURM execution settings (desired node/gorgona, allocation time, and job name). Example:
+
+```bash
 #SBATCH --job-name=trainCNNPCR_9_channels
 #SBATCH --time=10:00:00
 #SBATCH --nodes=1 
 #SBATCH --nodelist=gorgona7
-#SBATCH --output=(path de output)/slurm-logs/slurm-%j.log
+#SBATCH --output=/path/to/output/slurm-logs/slurm-%j.log
+```
 
-os pipelines disponíveis estão em: bcs-kedro/src/bcs_kedro/pipelines , cada folder é um pipeline existente.
+*Note: The available pipelines are located in `bcs-kedro/src/bcs_kedro/pipelines` (each folder represents an existing pipeline).*
 
+### Virtual Staining
 
+1. **Navigate to the virtual staining directory:**
 
-### Coloração Virtual
+```bash
+cd virtual_staining
+```
 
-1. **Navegue até o diretório de coloração virtual:**
+Run the `.sh` file, changing only the target `.py` script you want to execute and the SLURM execution settings (node, time, and job name).
 
-cd virtual_stainning
+## Additional Configuration
 
-Rode o arquivo .sh, alterando somente o .py que deseja executar, e configurações de execução, como górgona desejada, tempo de alocação e nome do job.
+### Important Adjustments
 
-## 🔧 Configuração Adicional
+- **Data paths**: Ensure that the paths in the configuration files (`conf/base/catalog.yml` in Kedro, and the `.sh` scripts in the virtual staining module) correctly point to your data.
 
-### Ajustes Importantes
-
-- **Caminhos de dados**: Certifique-se de que os caminhos nos arquivos de configuração (`conf/base/catalog.yml` no Kedro, e scripts `.sh` no módulo de coloração virtual) apontam corretamente para seus dados.
-
-- **GPU/CPU**: O treinamento é otimizado para GPU. Se estiver usando CPU, ajuste os batch sizes nos scripts de treinamento.
+- **GPU/CPU**: Training is optimized for GPU. If you are using a CPU, adjust the batch sizes in the training scripts to avoid memory issues.
