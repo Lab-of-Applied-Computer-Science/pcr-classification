@@ -5,7 +5,6 @@ Repository for the dissertation on predicting pathological complete response (pC
 - Ki-67 and PHH3 stains (real or virtual),
 - Biomarker-based spatial attention.
 
-The approach is inspired by Duanmu et al. (2022), removing the tumor cell detection module and incorporating a virtual staining module using Generative Adversarial Networks (GANs).
 
 ## Project Structure
 
