@@ -1,5 +1,9 @@
 # pCR Prediction in TNBC with Virtual Staining
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23788133.svg)](https://doi.org/10.5281/zenodo.23788133)
+
+
+
 Repository for the dissertation on predicting pathological complete response (pCR) in triple-negative breast cancer (TNBC), combining:
 - H&E images,
 - Ki-67 and PHH3 stains (real or virtual),
@@ -92,3 +96,42 @@ Run the `.sh` file, changing only the target `.py` script you want to execute an
 - **Data paths**: Ensure that the paths in the configuration files (`conf/base/catalog.yml` in Kedro, and the `.sh` scripts in the virtual staining module) correctly point to your data.
 
 - **GPU/CPU**: Training is optimized for GPU. If you are using a CPU, adjust the batch sizes in the training scripts to avoid memory issues.
+
+
+## Citation
+
+If you use this code, please cite the associated dissertation and the
+archived software release.
+
+> **Note:** The associated article is currently under review at
+> *Bioinformatics*. Its citation will be added here upon publication.
+
+### Dissertation
+
+```bibtex
+@mastersthesis{colonese_2026_thesis,
+  author = {Colonese, Henrique},
+  title  = {Virtual Immunohistochemical Staining for Pathological Complete
+            Response Prediction in Triple-Negative Breast Cancer},
+  school = {Universidade Federal de Minas Gerais},
+  year   = 2026,
+  url    = {https://repositorio.ufmg.br/items/d99b933c-323c-45bd-a228-5fd05507a7c6}
+}
+```
+
+### Software
+
+```bibtex
+@software{colonese_2026_23788133,
+  author    = {Colonese, Henrique and Ayala, Daniel and Teodoro, George},
+  title     = {Source code for: Virtual Immunohistochemical Staining for
+               Pathological Complete Response Prediction in
+               Triple-Negative Breast Cancer},
+  month     = oct,
+  year      = 2026,
+  publisher = {Zenodo},
+  version   = {v1.0.0},
+  doi       = {10.5281/zenodo.23788133},
+  url       = {https://doi.org/10.5281/zenodo.23788133}
+}
+```
